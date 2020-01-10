@@ -38,7 +38,6 @@ exports[`Login screen tests login screen applicant 1`] = `
         </strong>
       </h2>
     </a>
-    <Component />
     <div
       className="top-form"
     >
