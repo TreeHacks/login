@@ -1,1 +1,0 @@
-declare module 'cognito-express';

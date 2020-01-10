@@ -7,7 +7,6 @@ import AuthPageNavButton from "./AuthPageNavButton";
 import Form from "react-jsonschema-form";
 import { IAuthState } from "../store/auth/types";
 import StanfordLogin from "./StanfordLogin";
-import DeadlinesWidget from "../common/DeadlinesWidget";
 import queryString from "query-string";
 
 const mapStateToProps = state => ({
@@ -125,7 +124,6 @@ export class Login extends React.Component<ILoginProps, { formData: any, sponsor
         </a>
         {this.state.sponsor && <h3 className="h3-style">sponsors</h3>}
         {this.state.judge && <h3 className="h3-style">judges</h3>}
-        {["signIn", "signUp", "defaultPage"].indexOf(this.props.authPage) !== -1 && applicant && <DeadlinesWidget />}
         {this.props.message && <div className="alert alert-info" role="alert">
           {this.props.message}
         </div>

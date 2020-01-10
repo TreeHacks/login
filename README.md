@@ -1,6 +1,6 @@
-# Root
+# Login
 
-Hackathon registration framework. Used in TreeHacks since 2019. See it in action at https://root.treehacks.com
+Treehacks login used for SSO.
 
 ## Local setup
 1. Make sure you have MongoDB installed. Make sure `mongod` is in your PATH and that the correct data folder exists (`C:\Program Files\MongoDB\data\db` on windows, `/data/db` on MacOS).

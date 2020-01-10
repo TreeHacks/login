@@ -8,19 +8,11 @@ import Login from "./Login/Login";
 import Loading from "./Loading/Loading";
 import "bootstrap/dist/css/bootstrap.css";
 import { IAuthState } from "./store/auth/types";
-import Home from "./Home/Home";
-import Dashboard from "./Dashboard/Dashboard";
-import Rooms from "./Rooms/Rooms";
-import Transportation from "./Transportation/Transportation";
 import "./App.scss";
-import Review from "./Review/Review";
-import Admin from "./Admin/Admin";
 import Verify from "./Verify";
 import Helmet from "react-helmet";
-import FormPageWrapper from "./FormPage/FormPageWrapper";
-import Sponsors from "./Sponsors/Sponsors";
-import Judge from "./Judge/Judge";
 import { favicon } from "./constants";
+import "./FormPage/FormPage.scss";
 
 const mapStateToProps = state => ({
   ...state.base,
@@ -54,32 +46,12 @@ const App = (props: IAppProps) => (
 const MainRoutes = (props: IAppProps) => (
   <div>
     <Login />
-    {props.loggedIn === false &&
-      <Switch>
-        <Route exact={true} path='/' component={null} />
-        <Redirect to="/" />
-      </Switch>
+    {/* {props.loggedIn === false &&
+      // todo
     }
     {props.loggedIn === true &&
-      <div>
-        <Route path="" component={Home} />
-        <div id="page-elems">
-          <Switch>
-            {props.sponsor ? <Redirect exact path="/" to="/sponsors" /> :
-            props.judge ? <Redirect exact path="/" to="/judge" /> :
-              <Route path="/" exact component={Dashboard} />
-            }
-            <Route path="/application_info" render={() => { return <FormPageWrapper incomingFormName="application_info" />; }} />
-            <Route path="/rooms" exact component={Rooms} />
-            <Route path="/transportation" component={Transportation} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/review" exact component={Review} />
-            <Route path="/sponsors" component={Sponsors} />
-            <Route path="/judge" exact component={Judge} />
-          </Switch>
-        </div>
-      </div>
-    }
+      // todo
+    } */}
   </div>);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
