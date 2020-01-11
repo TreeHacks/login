@@ -11,7 +11,7 @@ exports[`Login screen tests login screen applicant 1`] = `
       className="text-center"
     >
       <a
-        href="https://treehacks.com/"
+        href=""
       >
         <img
           height="65px"
@@ -27,7 +27,7 @@ exports[`Login screen tests login screen applicant 1`] = `
     </div>
     <a
       className="wordmark"
-      href="https://treehacks.com/"
+      href=""
     >
       <h2
         className="h3-style"
@@ -96,7 +96,7 @@ exports[`Login screen tests login screen judge 1`] = `
       className="text-center"
     >
       <a
-        href="https://treehacks.com/"
+        href=""
       >
         <img
           height="65px"
@@ -112,7 +112,7 @@ exports[`Login screen tests login screen judge 1`] = `
     </div>
     <a
       className="wordmark"
-      href="https://treehacks.com/"
+      href=""
     >
       <h2
         className="h3-style"
@@ -180,7 +180,7 @@ exports[`Login screen tests login screen sponsor 1`] = `
       className="text-center"
     >
       <a
-        href="https://treehacks.com/"
+        href=""
       >
         <img
           height="65px"
@@ -196,7 +196,7 @@ exports[`Login screen tests login screen sponsor 1`] = `
     </div>
     <a
       className="wordmark"
-      href="https://treehacks.com/"
+      href=""
     >
       <h2
         className="h3-style"
