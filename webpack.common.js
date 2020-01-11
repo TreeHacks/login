@@ -26,6 +26,7 @@ module.exports = {
       COGNITO_ENDPOINT_URL: `"${process.env.COGNITO_ENDPOINT_URL}"`,
       LOGIN_COOKIE_DOMAIN: `"${process.env.LOGIN_COOKIE_DOMAIN}"`,
       LOGIN_REDIRECT_DEFAULT_SITE: `"${process.env.LOGIN_REDIRECT_DEFAULT_SITE}"`,
+      LOGIN_REDIRECT_WHITELIST: `"${process.env.LOGIN_REDIRECT_WHITELIST}"`,
       GA_TRACKING_ID: `"${process.env.GA_TRACKING_ID}"`,
       MODE: `"${process.env.MODE}"`
     }),
