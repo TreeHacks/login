@@ -37,7 +37,7 @@ const getRedirectUrl = () => {
 
 const LoggedIn = ({ logout }) => {
     useEffect(() => {
-        // window.location.href = getRedirectUrl();
+        window.location.href = getRedirectUrl();
     });
     return <div>You are now logged in.<br />
         <a href={getRedirectUrl()}>Continue to the next page</a> <br />
