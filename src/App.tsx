@@ -5,11 +5,12 @@ import history from "./history";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { IBaseState } from "./store/base/types";
 import Login from "./Login/Login";
+import LoggedIn from "./Login/LoggedIn";
 import Loading from "./Loading/Loading";
 import "bootstrap/dist/css/bootstrap.css";
 import { IAuthState } from "./store/auth/types";
 import "./App.scss";
-import Verify from "./Verify";
+import Verify from "./Login/Verify";
 import Helmet from "react-helmet";
 import { favicon } from "./constants";
 import "./FormPage/FormPage.scss";
@@ -46,12 +47,12 @@ const App = (props: IAppProps) => (
 const MainRoutes = (props: IAppProps) => (
   <div>
     <Login />
-    {/* {props.loggedIn === false &&
-      // todo
+    {props.loggedIn === false &&
+      null
     }
     {props.loggedIn === true &&
-      // todo
-    } */}
+      <LoggedIn />
+    }
   </div>);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

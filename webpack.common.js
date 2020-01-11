@@ -24,6 +24,8 @@ module.exports = {
       COGNITO_CLIENT_ID: `"${process.env.COGNITO_CLIENT_ID}"`,
       ENDPOINT_URL: `"/api"`,
       COGNITO_ENDPOINT_URL: `"${process.env.COGNITO_ENDPOINT_URL}"`,
+      LOGIN_COOKIE_DOMAIN: `"${process.env.LOGIN_COOKIE_DOMAIN}"`,
+      LOGIN_REDIRECT_DEFAULT_SITE: `"${process.env.LOGIN_REDIRECT_DEFAULT_SITE}"`,
       GA_TRACKING_ID: `"${process.env.GA_TRACKING_ID}"`,
       MODE: `"${process.env.MODE}"`
     }),

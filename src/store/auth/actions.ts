@@ -3,7 +3,9 @@ import Auth from "@aws-amplify/auth";
 import Cache from "@aws-amplify/cache";
 import { loadingStart, loadingEnd } from "../base/actions";
 import { get } from "lodash";
+import Cookies from "js-cookie";
 
+declare const LOGIN_COOKIE_DOMAIN: string;
 declare const COGNITO_CLIENT_ID: string;
 declare const COGNITO_ENDPOINT_URL: string;
 
@@ -90,7 +92,8 @@ const getCurrentUser = () => async (dispatch) => {
       let attributes: IUserAttributes = { "name": parsed["name"], "email": parsed["email"], "email_verified": parsed["email_verified"], "cognito:groups": parsed["cognito:groups"] };
       return await {
         "username": parsed["sub"],
-        attributes
+        attributes,
+        jwt
       };
     }
   }
@@ -102,7 +105,10 @@ const getCurrentUser = () => async (dispatch) => {
     parseJwt((await Auth.currentSession()).getIdToken().getJwtToken())
   ]).then(([user, token]) => {
     user.attributes["cognito:groups"] = token["cognito:groups"];
-    return user;
+    return {
+      ...user,
+      jwt: token
+    };
   });
 }
 
@@ -110,8 +116,10 @@ export function checkLoginStatus() {
   return (dispatch, getState) => {
     dispatch(loadingStart());
     return dispatch(getCurrentUser())
-      .then((user: { username: string, attributes: IUserAttributes, "cognito:groups"?: string[] }) => {
+      .then((user: { username: string, attributes: IUserAttributes, "cognito:groups"?: string[], jwt: string }) => {
         if (!user) throw "No credentials";
+        // Set cookie for SSO.
+        Cookies.set("jwt", user.jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
         const groups = get(user.attributes, "cognito:groups", []);
         const checkInGroup = group => groups.indexOf(group) > -1;
         const [admin, reviewer, sponsor, judge] = [

@@ -68,6 +68,13 @@ export class Login extends React.Component<ILoginProps, { formData: any, sponsor
   componentDidMount() {
 
     const search = queryString.parse(window.location.search);
+
+    if (search && search.redirect) {
+      // Needed to preserve the redirect URL (in query string)
+      // when the user logs in through SAML.
+      sessionStorage.setItem("redirect", search.redirect);
+    }
+
     if (search && search.code) {
       this.props.exchangeAuthCode(search.code);
       // Clear window.location.search without refreshing the page.
