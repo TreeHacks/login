@@ -7,7 +7,12 @@ import {Link} from "react-router-dom";
 declare const LOGIN_REDIRECT_DEFAULT_SITE: string;
 
 const isWhitelisted = url => {
-    const {subdomain, domain, tld} = parseDomain(url);
+    const parsed = parseDomain(url);
+    if (!parsed) {
+        // localhost: URLs don't get parsed properly.
+        return false;
+    }
+    const {subdomain, domain, tld} = parsed;
     return (domain === LOGIN_REDIRECT_WHITELISTED_DOMAIN && tld === LOGIN_REDIRECT_WHITELISTED_TLD);
 }
 
