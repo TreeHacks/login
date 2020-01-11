@@ -19,7 +19,7 @@ function getJwt() {
 }
 
 function removeJwt() {
-  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
+  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
   localStorage.removeItem("jwt");
 }
 
