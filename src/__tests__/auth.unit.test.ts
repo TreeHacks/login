@@ -1,4 +1,5 @@
 import { parseJwt } from "../store/auth/actions";
+import { isWhitelisted } from "../Login/LoggedIn";
 
 describe("auth helper functions", () => {
   describe("parseJwt", () => {
@@ -18,5 +19,33 @@ describe("auth helper functions", () => {
     test("parses malformed jwt", () => {
       expect(parseJwt("ABC")).toMatchInlineSnapshot(`null`);
     });
+  });
+});
+
+describe("whitelist", () => {
+  test("single domain", () => {
+    const whitelist = ["treehacks.com"];
+    expect(isWhitelisted("http://treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://root.treehacks.com", whitelist)).toEqual(false);
+
+  });
+  test("wildcard domain", () => {
+    const whitelist = ["*.treehacks.com"];
+    expect(isWhitelisted("http://treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://root.treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://root.dev.treehacks.com", whitelist)).toEqual(true);
+  });
+  test("domain + localhost", () => {
+    const whitelist = ["*.treehacks.com", "localhost"];
+    expect(isWhitelisted("http://treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://root.dev.treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://localhost", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://localhost:9000", whitelist)).toEqual(true);
+  });
+  test.skip("wildcard on subdomain", () => {
+    // TODO: Not supported yet.
+    const whitelist = ["*.dev.treehacks.com", "localhost"];
+    expect(isWhitelisted("http://treehacks.com", whitelist)).toEqual(false);
+    expect(isWhitelisted("http://root.dev.treehacks.com", whitelist)).toEqual(true);
   });
 });

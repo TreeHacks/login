@@ -1,19 +1,31 @@
 import React, { useEffect } from "react";
-import { LOGIN_REDIRECT_WHITELISTED_DOMAIN, LOGIN_REDIRECT_WHITELISTED_TLD } from "../constants";
 import parseDomain from "parse-domain";
 import queryString from "query-string";
 import {Link} from "react-router-dom";
 
 declare const LOGIN_REDIRECT_DEFAULT_SITE: string;
+declare const LOGIN_REDIRECT_WHITELIST: string;
 
-const isWhitelisted = url => {
-    const parsed = parseDomain(url);
-    if (!parsed) {
-        // localhost: URLs don't get parsed properly.
-        return false;
+export const isWhitelisted = (url, whitelist) => {
+    // TODO: force HTTPS
+    const opts = { customTlds: /localhost/ };
+    for (let wlUrl of whitelist) {
+        const parsedWlUrl = parseDomain(wlUrl, opts);
+        const parsed = parseDomain(url, opts);
+        console.log(parsed, parsedWlUrl);
+        if (!parsed) {
+            return false;
+        }
+        if (wlUrl === "*") return true;
+        if (parsedWlUrl.tld === "*") return true;
+        if (parsedWlUrl.tld !== parsed.tld) continue;
+        if (parsedWlUrl.domain === "*") return true;
+        if (parsedWlUrl.domain !== parsed.domain) continue;
+        if (parsedWlUrl.subdomain === "*") return true;
+        if (parsedWlUrl.subdomain !== parsed.subdomain) continue;
+        return true;
     }
-    const {subdomain, domain, tld} = parsed;
-    return (domain === LOGIN_REDIRECT_WHITELISTED_DOMAIN && tld === LOGIN_REDIRECT_WHITELISTED_TLD);
+    return false;
 }
 
 export const getRedirectUrl = () => {
@@ -29,7 +41,7 @@ export const getRedirectUrl = () => {
     } else {
         url = LOGIN_REDIRECT_DEFAULT_SITE;
     }
-    return isWhitelisted(url) ? url : LOGIN_REDIRECT_DEFAULT_SITE;
+    return isWhitelisted(url, (LOGIN_REDIRECT_WHITELIST || "").split(",")) ? url : LOGIN_REDIRECT_DEFAULT_SITE;
 }
 
 const LoggedIn = () => {
