@@ -1,25 +1,17 @@
 import React, { useEffect } from "react";
-import { logout } from "../store/auth/actions";
-import { connect } from "react-redux";
 import { LOGIN_REDIRECT_WHITELISTED_DOMAIN, LOGIN_REDIRECT_WHITELISTED_TLD } from "../constants";
 import parseDomain from "parse-domain";
 import queryString from "query-string";
+import {Link} from "react-router-dom";
 
 declare const LOGIN_REDIRECT_DEFAULT_SITE: string;
-
-const mapStateToProps = state => ({
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    logout: () => dispatch(logout())
-});
 
 const isWhitelisted = url => {
     const {subdomain, domain, tld} = parseDomain(url);
     return (domain === LOGIN_REDIRECT_WHITELISTED_DOMAIN && tld === LOGIN_REDIRECT_WHITELISTED_TLD);
 }
 
-const getRedirectUrl = () => {
+export const getRedirectUrl = () => {
     let url = null;
     let search = queryString.parse(window.location.search);
     if (search && search.redirect) {
@@ -35,14 +27,14 @@ const getRedirectUrl = () => {
     return isWhitelisted(url) ? url : LOGIN_REDIRECT_DEFAULT_SITE;
 }
 
-const LoggedIn = ({ logout }) => {
+const LoggedIn = () => {
     useEffect(() => {
         window.location.href = getRedirectUrl();
     });
     return <div>You are now logged in.<br />
         <a href={getRedirectUrl()}>Continue to the next page</a> <br />
-        <a href="#" onClick={(e) => {e.preventDefault(); logout()}}>Log out</a>
+        <Link to="/logout">Log out</Link>
     </div>;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn);
+export default LoggedIn;

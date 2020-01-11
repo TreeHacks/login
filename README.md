@@ -8,6 +8,8 @@ Go to https://login.treehacks.com
 
 Go to https://login.treehacks.com/?redirect=https://mentor.treehacks.com
 
+Go to https://login.treehacks.com/logout
+
 ## Local setup
 1. Download the appropriate `.env` file with the proper environment variables set, and put it in your working directory.
 1. Run `npm install`

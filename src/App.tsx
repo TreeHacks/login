@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { IBaseState } from "./store/base/types";
 import Login from "./Login/Login";
 import LoggedIn from "./Login/LoggedIn";
+import Logout from "./Login/Logout";
 import Loading from "./Loading/Loading";
 import "bootstrap/dist/css/bootstrap.css";
 import { IAuthState } from "./store/auth/types";
@@ -40,6 +41,7 @@ const App = (props: IAppProps) => (
       {props.loading && <Loading />}
       <Switch>
         <Route path="/verify" component={Verify} />
+        <Route path="/logout" component={Logout} />
         <Route render={() => <MainRoutes {...props} />} />
       </Switch>
     </div>
