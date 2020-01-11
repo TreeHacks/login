@@ -9,6 +9,20 @@ declare const LOGIN_COOKIE_DOMAIN: string;
 declare const COGNITO_CLIENT_ID: string;
 declare const COGNITO_ENDPOINT_URL: string;
 
+function setJwt(jwt) {
+  Cookies.set("jwt", jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
+  localStorage.setItem("jwt", jwt);
+}
+
+function getJwt() {
+  return Cookies.get("jwt") || localStorage.getItem("jwt");
+}
+
+function removeJwt() {
+  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
+  localStorage.removeItem("jwt");
+}
+
 export const loggedIn = (userId, attributes, admin, reviewer, sponsor, judge, applicant) => ({
   type: 'LOGIN_SUCCESS',
   userId,
@@ -111,20 +125,6 @@ const getCurrentUser = () => async (dispatch) => {
       jwt: token
     };
   });
-}
-
-function setJwt(jwt) {
-  Cookies.set("jwt", jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
-  localStorage.setItem("jwt", jwt);
-}
-
-function getJwt() {
-  return Cookies.get("jwt") || localStorage.getItem("jwt");
-}
-
-function removeJwt() {
-  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
-  localStorage.removeItem("jwt");
 }
 
 export function checkLoginStatus() {
