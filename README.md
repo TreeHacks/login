@@ -2,6 +2,10 @@
 
 Treehacks login used for SSO.
 
+Deployed at https://login.treehacks.com
+
+Dev version deployed at https://login.dev.treehacks.com
+
 ## Usage
 
 Login - Go to https://login.treehacks.com
