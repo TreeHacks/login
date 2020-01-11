@@ -38,7 +38,7 @@ export function logout() {
     console.log("signing out");
     Cache.removeItem("federatedInfo");
     localStorage.clear();
-    Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
+    removeJwt();
     Auth.signOut().then(e => {
       loadingEnd();
       dispatch(loggedOut());
@@ -56,7 +56,7 @@ export function parseJwt(token) {
 };
 
 const getCurrentUser = () => async (dispatch) => {
-  const jwt = localStorage.getItem("jwt");
+  const jwt = getJwt();
   if (jwt) {
     /*
     ud: 
@@ -78,11 +78,11 @@ const getCurrentUser = () => async (dispatch) => {
     const parsed = parseJwt(jwt);
     if (!parsed) {
       console.log("JWT invalid");
-      localStorage.removeItem("jwt");
+      removeJwt();
     }
     else if (new Date().getTime() / 1000 >= parseInt(parsed.exp)) {
       console.log("JWT expired");
-      localStorage.removeItem("jwt");
+      removeJwt();
       let refreshToken = localStorage.getItem("refresh_token");
       if (refreshToken) {
         dispatch(exchangeRefreshToken(refreshToken));
@@ -113,6 +113,20 @@ const getCurrentUser = () => async (dispatch) => {
   });
 }
 
+function setJwt(jwt) {
+  Cookies.set("jwt", jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
+  localStorage.setItem("jwt", jwt);
+}
+
+function getJwt() {
+  return Cookies.get("jwt") || localStorage.getItem("jwt");
+}
+
+function removeJwt() {
+  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
+  localStorage.removeItem("jwt");
+}
+
 export function checkLoginStatus() {
   return (dispatch, getState) => {
     dispatch(loadingStart());
@@ -120,7 +134,7 @@ export function checkLoginStatus() {
       .then((user: { username: string, attributes: IUserAttributes, "cognito:groups"?: string[], jwt: string }) => {
         if (!user) throw "No credentials";
         // Set cookie for SSO.
-        Cookies.set("jwt", user.jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
+        setJwt(user.jwt);
         const groups = get(user.attributes, "cognito:groups", []);
         const checkInGroup = group => groups.indexOf(group) > -1;
         const [admin, reviewer, sponsor, judge] = [
@@ -343,7 +357,7 @@ const callTokenEndpoint = async (data: URLSearchParams) => {
   */
   let response: { access_token: string, refresh_token: string, token_type: string, id_token: string, expires_in: number } = await res.json();
   if (response) {
-    localStorage.setItem("jwt", response.id_token);
+    setJwt(response.id_token);
     localStorage.setItem("refresh_token", response.refresh_token);
   }
 }
