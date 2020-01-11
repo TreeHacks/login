@@ -38,6 +38,7 @@ export function logout() {
     console.log("signing out");
     Cache.removeItem("federatedInfo");
     localStorage.clear();
+    Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
     Auth.signOut().then(e => {
       loadingEnd();
       dispatch(loggedOut());
