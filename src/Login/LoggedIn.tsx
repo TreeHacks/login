@@ -12,7 +12,6 @@ export const isWhitelisted = (url, whitelist) => {
     for (let wlUrl of whitelist) {
         const parsedWlUrl = parseDomain(wlUrl, opts);
         const parsed = parseDomain(url, opts);
-        console.log(parsed, parsedWlUrl);
         if (!parsed) {
             return false;
         }
