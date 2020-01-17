@@ -40,7 +40,11 @@ export const getRedirectUrl = () => {
     } else {
         url = LOGIN_REDIRECT_DEFAULT_SITE;
     }
-    return isWhitelisted(url, (LOGIN_REDIRECT_WHITELIST || "").split(",")) ? url : LOGIN_REDIRECT_DEFAULT_SITE;
+    url = isWhitelisted(url, (LOGIN_REDIRECT_WHITELIST || "").split(",")) ? url : LOGIN_REDIRECT_DEFAULT_SITE;
+    const query = queryString.stringify({
+        jwt: localStorage.getItem("jwt")
+    });
+    return `${url}#${query}`;
 }
 
 const LoggedIn = () => {

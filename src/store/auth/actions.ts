@@ -3,23 +3,19 @@ import Auth from "@aws-amplify/auth";
 import Cache from "@aws-amplify/cache";
 import { loadingStart, loadingEnd } from "../base/actions";
 import { get } from "lodash";
-import Cookies from "js-cookie";
 
-declare const LOGIN_COOKIE_DOMAIN: string;
 declare const COGNITO_CLIENT_ID: string;
 declare const COGNITO_ENDPOINT_URL: string;
 
 function setJwt(jwt) {
-  Cookies.set("jwt", jwt, { domain: LOGIN_COOKIE_DOMAIN, expires: 7 });
   localStorage.setItem("jwt", jwt);
 }
 
 function getJwt() {
-  return Cookies.get("jwt") || localStorage.getItem("jwt");
+  return localStorage.getItem("jwt");
 }
 
 function removeJwt() {
-  Cookies.remove("jwt", { domain: LOGIN_COOKIE_DOMAIN });
   localStorage.removeItem("jwt");
 }
 
