@@ -36,9 +36,11 @@ describe("whitelist", () => {
     expect(isWhitelisted("http://root.dev.treehacks.com", whitelist)).toEqual(true);
   });
   test("domain + localhost", () => {
-    const whitelist = ["*.treehacks.com", "localhost"];
+    const whitelist = ["*.hackbetter.org", "*.treehacks.com", "localhost"];
     expect(isWhitelisted("http://treehacks.com", whitelist)).toEqual(true);
     expect(isWhitelisted("http://root.dev.treehacks.com", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://hardware.hackbetter.org", whitelist)).toEqual(true);
+    expect(isWhitelisted("http://hackbetter.org", whitelist)).toEqual(true);
     expect(isWhitelisted("http://localhost", whitelist)).toEqual(true);
     expect(isWhitelisted("http://localhost:9000", whitelist)).toEqual(true);
   });
