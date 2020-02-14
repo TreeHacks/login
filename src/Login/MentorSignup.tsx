@@ -176,11 +176,11 @@ export class MentorSignup extends React.Component<IMentorSignupProps, { formData
             <button className="btn btn-info" type="submit">Update password</button>
           </AuthForm>
         }
-        {this.props.authPage !== "defaultPage" &&
+        {/* {this.props.authPage !== "defaultPage" &&
           <div className="mt-1 back-container">
             <AuthPageNavButton current={this.props.authPage} page="defaultPage" label="Back" className="btn-back" />
           </div>
-        }
+        } */}
       </div></div>);
     }
     else {
