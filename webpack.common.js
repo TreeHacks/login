@@ -27,7 +27,8 @@ module.exports = {
       LOGIN_REDIRECT_DEFAULT_SITE: `"${process.env.LOGIN_REDIRECT_DEFAULT_SITE}"`,
       LOGIN_REDIRECT_WHITELIST: `"${process.env.LOGIN_REDIRECT_WHITELIST}"`,
       GA_TRACKING_ID: `"${process.env.GA_TRACKING_ID}"`,
-      MODE: `"${process.env.MODE}"`
+      MODE: `"${process.env.MODE}"`,
+      HELP_URL: `"${process.env.HELP_URL}"`
     }),
     new HtmlWebpackPlugin({
       title: 'TreeHacks Client',

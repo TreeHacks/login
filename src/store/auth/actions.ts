@@ -1,8 +1,10 @@
 import { IUserAttributes, IAuthState } from "./types";
 import Auth from "@aws-amplify/auth";
 import Cache from "@aws-amplify/cache";
+import API from "@aws-amplify/api";
 import { loadingStart, loadingEnd } from "../base/actions";
 import { get } from "lodash";
+import queryString from "query-string";
 
 declare const COGNITO_CLIENT_ID: string;
 declare const COGNITO_ENDPOINT_URL: string;
@@ -356,5 +358,33 @@ const callTokenEndpoint = async (data: URLSearchParams) => {
   if (response) {
     setJwt(response.id_token);
     localStorage.setItem("refresh_token", response.refresh_token);
+  }
+}
+
+export function mentorSignup(data) {
+  return async (dispatch, getState) => {
+    dispatch(loadingStart());
+    const hash = queryString.parse(window.location.hash);
+    const body = {
+      email: data.email,
+      token: hash && hash.token
+    };
+    let response;
+    try {
+      response = await API.post("treehacks", '/mentor_create', { body });
+      if (!response.success) {
+        throw response.error;
+      }
+    } catch (e) {
+      dispatch(onAuthError("Signup failed: " + e));
+      dispatch(loadingEnd());
+      return;
+    }
+    const {temporaryPassword, slackInviteSent} = response;
+    if (!slackInviteSent) {
+      dispatch(setMessage("User created, but Slack account creation failed. Please go to slack.treehacks.com to join the Slack."));
+    }
+    dispatch(setMessage("User created!"));
+    dispatch(signIn({ email: data.email, password: temporaryPassword }));
   }
 }
