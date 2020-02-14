@@ -12,7 +12,7 @@
         "test:frontend": "dotenv jest src",
         "test:backend": "dotenv jest backend -- --runInBand",
         "start": "npm run build:live",
-        "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- -r dotenv/config ./backend/index.ts",
+        "build:live": "./node_modules/.bin/ts-node -r dotenv/config ./backend/index.ts",
         "build:backend": "tsc",
         "build:frontend": "webpack --progress --config webpack.prod.js",
         "build": "npm run build:backend && npm run build:frontend",
