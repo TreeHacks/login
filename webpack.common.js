@@ -22,7 +22,7 @@ module.exports = {
     new webpack.DefinePlugin({
       COGNITO_USER_POOL_ID: `"${process.env.COGNITO_USER_POOL_ID}"`,
       COGNITO_CLIENT_ID: `"${process.env.COGNITO_CLIENT_ID}"`,
-      ENDPOINT_URL: `"/api"`,
+      ENDPOINT_URL: `"${process.env.ENDPOINT_URL}"`,
       COGNITO_ENDPOINT_URL: `"${process.env.COGNITO_ENDPOINT_URL}"`,
       LOGIN_REDIRECT_DEFAULT_SITE: `"${process.env.LOGIN_REDIRECT_DEFAULT_SITE}"`,
       LOGIN_REDIRECT_WHITELIST: `"${process.env.LOGIN_REDIRECT_WHITELIST}"`,
