@@ -58,10 +58,7 @@ const LoggedIn = () => {
     useEffect(() => {
         window.location.href = getRedirectUrl();
     });
-    return <div>You are now logged in.<br />
-        <a href={getRedirectUrl()}>Continue to the next page</a> <br />
-        <Link to="/logout">Log out</Link>
-    </div>;
+    return null;
 }
 
 export default LoggedIn;
