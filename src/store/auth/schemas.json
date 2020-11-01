@@ -70,7 +70,7 @@
         "ui:placeholder": "email address"
       },
       "location": {
-        "ui:placeholder": "traveling from..."
+        "ui:placeholder": "I'm from..."
       }
     }
   },
