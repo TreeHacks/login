@@ -45,7 +45,7 @@
           "title": "re-enter password"
         },
         "location": {
-          "description": "Due to Covid restictions, only in state applicants will be able to attend in person.",
+          "description": "Due to Covid restrictions, only in state applicants will be able to attend in person.",
           "type": "string",
           "title": "How will you be joining us?",
           "enum": ["In Person", "Virtually"]
