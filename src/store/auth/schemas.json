@@ -45,7 +45,7 @@
           "title": "re-enter password"
         },
         "location": {
-          "custom_description": "custom desc.",
+          "description": "Due to Covid restictions, only in state applicants will be able to attend in person.",
           "type": "string",
           "title": "How will you be joining us?",
           "enum": ["In Person", "Virtually"]
@@ -74,7 +74,7 @@
         "ui:placeholder": "email address"
       },
       "location": {
-        "ui:placeholder": "I'm from..."
+        "ui:placeholder": "How will you be joining us?"
       }
     }
   },
