@@ -113,7 +113,7 @@
         "lodash": "^4.17.11",
         "lodash-es": "^4.17.11",
         "moment-timezone": "^0.5.23",
-        "mongoose": "^5.4.1",
+        "mongoose": "^5.7.5",
         "papaparse": "^4.6.2",
         "parse-domain": "^2.3.4",
         "path": "^0.12.7",
