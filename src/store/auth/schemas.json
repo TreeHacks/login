@@ -43,19 +43,12 @@
         "password2": {
           "type": "string",
           "title": "re-enter password"
-        },
-        "location": {
-          "description": "Due to Covid restrictions, only in-state applicants (i.e. those attending university in or otherwise living in California) will potentially be invited to attend in-person. Please only choose the 'In-Person' option if you satisfy the above.",
-          "type": "string",
-          "title": "How will you be joining us?",
-          "enum": ["In-Person", "Virtually"]
         }
       },
       "required": [
         "email",
         "password",
-        "password2",
-        "location"
+        "password2"
       ]
     },
     "uiSchema": {
@@ -72,9 +65,6 @@
       },
       "email": {
         "ui:placeholder": "email address"
-      },
-      "location": {
-        "ui:placeholder": "How will you be joining us?"
       }
     }
   },
