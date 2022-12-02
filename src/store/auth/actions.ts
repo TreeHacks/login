@@ -214,7 +214,6 @@ export function signUp(data) {
       attributes: {
         email: email,
         name: "User",
-        ["custom:location"]: data.location,
         website: [location.protocol, '//', location.host, location.pathname].join('') // Link for confirmation email
       }
     })
