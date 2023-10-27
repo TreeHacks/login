@@ -14,9 +14,9 @@ const Logout = ({ logout }) => {
     useEffect(() => {
         logout();
         // todo: hacky fix. we should redirect only when we we know that logout() has finished.
-        //setTimeout(() => {
-        //    window.location.href = getRedirectUrl();
-        //}, 500);
+        setTimeout(() => {
+            window.location.href = getRedirectUrl();
+        }, 500);
     });
     return <div>You are now logged out.<br />
         <a href={getRedirectUrl()}>Continue to the next page</a> <br />
