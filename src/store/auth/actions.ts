@@ -51,6 +51,8 @@ export function logout() {
     Cache.removeItem("federatedInfo");
     localStorage.clear();
     removeJwt();
+    const jwt = getJwt();
+    console.log(jwt);
     Auth.signOut().then(e => {
       loadingEnd();
       dispatch(loggedOut());
