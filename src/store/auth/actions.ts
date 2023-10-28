@@ -19,6 +19,7 @@ function getJwt() {
 
 function removeJwt() {
   localStorage.removeItem("jwt");
+  console.log(localStorage.getItem("jwt"));
 }
 
 export const loggedIn = (userId, attributes, admin, reviewer, sponsor, judge, applicant) => ({
@@ -51,8 +52,6 @@ export function logout() {
     Cache.removeItem("federatedInfo");
     localStorage.clear();
     removeJwt();
-    const jwt = getJwt();
-    console.log(jwt);
     Auth.signOut().then(e => {
       loadingEnd();
       dispatch(loggedOut());
