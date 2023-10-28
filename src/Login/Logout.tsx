@@ -18,6 +18,7 @@ const Logout = ({ logout }) => {
             window.location.href = getRedirectUrl();
         }, 500);
     });
+    console.log(getRedirectUrl());
     return <div>You are now logged out.<br />
         <a href={getRedirectUrl()}>Continue to the next page</a> <br />
     </div>;
