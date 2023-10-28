@@ -14,11 +14,10 @@ const Logout = ({ logout }) => {
     useEffect(() => {
         logout();
         // todo: hacky fix. we should redirect only when we we know that logout() has finished.
-        //setTimeout(() => {
-         //   window.location.href = //"login.treehacks.com" //getRedirectUrl();
-        //}, 500);
+        setTimeout(() => {
+            window.location.href = "login.treehacks.com"; //getRedirectUrl();
+        }, 1000);
     });
-    console.log(getRedirectUrl());
     return <div>You are now logged out.<br />
         <a href={getRedirectUrl()}>Continue to the next page</a> <br />
     </div>;
