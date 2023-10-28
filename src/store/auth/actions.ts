@@ -19,7 +19,6 @@ function getJwt() {
 
 function removeJwt() {
   localStorage.removeItem("jwt");
-  console.log(localStorage.getItem("jwt"));
 }
 
 export const loggedIn = (userId, attributes, admin, reviewer, sponsor, judge, applicant) => ({
