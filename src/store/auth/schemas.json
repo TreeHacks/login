@@ -45,7 +45,7 @@
           "title": "re-enter password"
         },
         "location": {
-          "description": "Please select wheere you will be coming from!",
+          "description": "Please select where you will be coming from!",
           "type": "string",
           "title": "Where will you be traveling from?",
           "enum": ["Outside USA",
