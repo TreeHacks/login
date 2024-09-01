@@ -123,11 +123,11 @@ export class Login extends React.Component<ILoginProps, { formData: any, sponsor
       return (<div className="login-container"><div className="treehacks-login">
         <div className="text-center">
           <a href="">
-            <img src={logo} width="85px" height="65px" style={{ "marginTop": 49 }} />
+            <img src={logo} width="114px" height="124px" style={{ "marginTop": 49 }} />
           </a>
         </div>
         <a href="" className="wordmark">
-          <h2 className="h3-style">tree<strong>hacks</strong></h2>
+          <h2 className="h3-style">TREEHACKS</h2>
         </a>
         {this.state.sponsor && <h3 className="h3-style">sponsors</h3>}
         {this.state.judge && <h3 className="h3-style">judges</h3>}

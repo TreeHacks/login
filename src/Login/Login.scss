@@ -38,10 +38,13 @@
 }
 .h3-style{
     font-size: 50px;
-    margin-top: 10px;
-    color: $primary-color;
+    color: $primary-color-dark;
     margin-bottom: 20px;
     text-align: center;
+    font-family: Fredoka;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 .wordmark:hover{
     text-decoration: none;

@@ -14,14 +14,14 @@ exports[`Login screen tests login screen applicant 1`] = `
         href=""
       >
         <img
-          height="65px"
+          height="124px"
           src={[Function]}
           style={
             Object {
               "marginTop": 49,
             }
           }
-          width="85px"
+          width="114px"
         />
       </a>
     </div>
@@ -32,10 +32,7 @@ exports[`Login screen tests login screen applicant 1`] = `
       <h2
         className="h3-style"
       >
-        tree
-        <strong>
-          hacks
-        </strong>
+        TREEHACKS
       </h2>
     </a>
     <div
@@ -99,14 +96,14 @@ exports[`Login screen tests login screen judge 1`] = `
         href=""
       >
         <img
-          height="65px"
+          height="124px"
           src={[Function]}
           style={
             Object {
               "marginTop": 49,
             }
           }
-          width="85px"
+          width="114px"
         />
       </a>
     </div>
@@ -117,10 +114,7 @@ exports[`Login screen tests login screen judge 1`] = `
       <h2
         className="h3-style"
       >
-        tree
-        <strong>
-          hacks
-        </strong>
+        TREEHACKS
       </h2>
     </a>
     <h3
@@ -183,14 +177,14 @@ exports[`Login screen tests login screen sponsor 1`] = `
         href=""
       >
         <img
-          height="65px"
+          height="124px"
           src={[Function]}
           style={
             Object {
               "marginTop": 49,
             }
           }
-          width="85px"
+          width="114px"
         />
       </a>
     </div>
@@ -201,10 +195,7 @@ exports[`Login screen tests login screen sponsor 1`] = `
       <h2
         className="h3-style"
       >
-        tree
-        <strong>
-          hacks
-        </strong>
+        TREEHACKS
       </h2>
     </a>
     <h3
